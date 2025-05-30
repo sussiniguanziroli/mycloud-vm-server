@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UploadFile from './UploadFile';
 
 const MainFolder = () => {
-    const [filesList, setFilesList] = useState([
-        "informe1.pdf",
-        "foto_vacaciones.jpg",
-        "presentacion.pptx",
-        "datos.xlsx",
-        "manual_tecnico.docx"
-    ]);
+
+    const [filesList, setFilesList] = useState([])
+
+    useEffect(() => {
+        const fetchFiles = async () => {
+            try {
+                const response = await fetch('/api/files');
+                const data = await response.json();
+                if (response.ok) {
+                    setFilesList(data.files || []); 
+                } else {
+                    
+                    setFilesList([]);
+                }
+            } catch (error) {
+                setFilesList([]); 
+            }
+        };
+        fetchFiles();
+
+    }, []);
 
 
-    const handleReload = () => {
-        setFilesList(prev => [...prev, `nuevo_archivo_${Date.now()}.txt`]);
+    const handleReload = async () => {
+        try {
+            const response = await fetch('/api/files');
+            const data = await response.json();
+            if (response.ok) {
+                setFilesList(data.files || []);
+            } else {
+                console.error("Error en fetch de archivos: ", data.error);
+            }
+        } catch (error) {
+            console.error("Erro de red al subir archivos: ", error);
+        }
     };
 
     return (
@@ -29,7 +53,7 @@ const MainFolder = () => {
                 <ul>
                     {filesList.map(filename => (
                         <li key={filename}>
-                            <a href={`#`} target="" rel="noreferrer">
+                            <a href={`/api/download/${filename}`} target="_blank" rel="noopener noreferrer">
                                 {filename}
                             </a>
                         </li>

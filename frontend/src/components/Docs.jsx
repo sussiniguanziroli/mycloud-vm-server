@@ -1,8 +1,11 @@
 import React from 'react'
+import DocsContainer from './DocsContainer'
 
 const Docs = () => {
   return (
-    <div>Docs</div>
+    <main className='main-folder-container'>
+      <DocsContainer />
+    </main>
   )
 }
 

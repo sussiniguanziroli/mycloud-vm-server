@@ -9,7 +9,9 @@ const UploadFile = ({ onUploadSuccess }) => {
         setFile(e.target.files[0]);
     };
 
-    const handleUpload = () => {
+
+
+    const handleUpload = async () => { 
         if (!file) {
             setMessage("Selecciona un archivo");
             return;
@@ -18,14 +20,34 @@ const UploadFile = ({ onUploadSuccess }) => {
         setIsLoading(true);
         setMessage("");
 
-        setTimeout(() => {
-            setMessage(`Archivo "${file.name}" subido correctamente`);
-            setFile(null);
-            setIsLoading(false);
-            if (onUploadSuccess) onUploadSuccess();
-        }, 1000);
-    };
+        const formData = new FormData();
+        formData.append('file', file);
 
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await response.json(); 
+
+            if (response.ok) {
+                setMessage(data.message || `Archivo "${file.name}" subido correctamente`);
+                setFile(null);
+               
+                if (document.querySelector('input[type="file"]')) { 
+                    document.querySelector('input[type="file"]').value = '';
+                }
+                if (onUploadSuccess) onUploadSuccess(); 
+            } else {
+                setMessage(data.error || "Error al subir el archivo");
+            }
+        } catch (error) {
+            setMessage("Error de red al subir el archivo: " + error.message);
+            console.error("Network error uploading file:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
     return (
         <div className="file-uploader">
             <h3>Subir nuevo archivo</h3>
