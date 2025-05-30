@@ -43,7 +43,6 @@ const UploadFile = ({ onUploadSuccess }) => {
             }
         } catch (error) {
             setMessage("Error de red al subir el archivo: " + error.message);
-            console.error("Network error uploading file:", error);
         } finally {
             setIsLoading(false);
         }

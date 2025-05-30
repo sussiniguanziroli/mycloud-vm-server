@@ -35,7 +35,7 @@ const MainFolder = () => {
                 console.error("Error en fetch de archivos: ", data.error);
             }
         } catch (error) {
-            console.error("Erro de red al subir archivos: ", error);
+            console.error("Error de red al subir archivos: ", error);
         }
     };
 
