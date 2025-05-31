@@ -73,13 +73,16 @@ if __name__ == '__main__':
 
 
 """
-curl -X POST -F "file=@/home/danbone/Documents/UTN/Integrador_AySO/prueba_post.txt" http://127.0.0.1/upload 
+curl -X POST -F "file=@/home/danbone/Documents/UTN/Integrador_AySO/prueba_post.txt" http://127.0.0.1/api/upload 
 (POST con un archivo)
 
-curl -O http://127.0.0.1:5000/files/prueba_get.txt 
+curl -O http://127.0.0.1:5000/api/files/prueba_get.txt 
 (GET para descargar)
 
-curl http://127.0.0.1/files 
+curl http://127.0.0.1/api/files 
 (GET para listar)
+
+curl -X DELETE http://127.0.0.1/api/files/prueba_get.txt 
+(DELETE para borrar)
 
 """
