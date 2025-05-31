@@ -74,12 +74,14 @@
         justify-content: center;
         flex-direction: column;
         gap: 90px;
+
         .gestor-archivos {
             h2 {
                 margin-bottom: 1rem;
                 text-align: center;
             }
         }
+
         .file-uploader {
             width: auto;
             background-color: #EDEBD7;
@@ -113,6 +115,7 @@
                 padding-left: 1rem;
             }
         }
+
         .archivos-disponibles {
             background-color: #EDEBD7;
             height: fit-content;
@@ -123,19 +126,53 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
             h3 {
                 margin-bottom: 5px;
             }
+
+            button {
+                all: unset;
+                background-color: goldenrod;
+                padding: 6px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all .4s;
+            }
+            button:hover {
+                background-color: darkgoldenrod;
+            }
+
             ul {
                 font-size: large;
+
                 li {
                     text-decoration: none;
                     all: unset;
                     display: flex;
-                    a {
-                        text-decoration: none;
+
+                    .get-utils {
+                        button {
+                            all: unset;
+                            padding: 3px 5px;
+                            color: white;
+                            background-color: red;
+                            border-radius: 16px;
+                            transition: all 0.3s;
+                            cursor: pointer;
+                            margin-left: 4px;
+                        }
+                        a {
+                            text-decoration: none;
+                        }
+
+                        
+                        button:hover {
+                            background-color:crimson;
+                        }
                     }
                 }
+
             }
         }
     }
