@@ -44,14 +44,15 @@ def list_files():
     
 @app.route('/api/files/<filename>', methods=['DELETE'])
 def delete_file(filename):
-    try: 
+    try:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         if os.path.exists(file_path):
             os.remove(file_path)
-    except FileNotFoundError:
-        return jsonify({'error': 'File not found'}), 404
-    
-
+            return jsonify({'message': f'{filename} deleted successfully'})
+        else:
+            return jsonify({'error': 'File not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/', defaults={"path":""})
