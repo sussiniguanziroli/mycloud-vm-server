@@ -32,7 +32,7 @@ def download_file(filename):
     try:
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
     except FileNotFoundError:
-        return jsonify({'error': 'File not found'}), 404
+        return jsonify({'error': 'Archivo no encontrado'}), 404
     
 @app.route('/api/files', methods=['GET'])
 def list_files():
@@ -42,15 +42,15 @@ def list_files():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
-@app.route('/api/files/<filename>', methods=['DELETE'])
+@app.route('/api/delete/<filename>', methods=['DELETE'])
 def delete_file(filename):
     try:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         if os.path.exists(file_path):
             os.remove(file_path)
-            return jsonify({'message': f'{filename} deleted successfully'})
+            return jsonify({'message': f'{filename} eliminado satisfactoriamente'})
         else:
-            return jsonify({'error': 'File not found'}), 404
+            return jsonify({'error': 'Archivo no encontrado'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
