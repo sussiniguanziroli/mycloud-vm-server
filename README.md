@@ -2,6 +2,19 @@
 
 Este repositorio contiene el desarrollo del **Caso Práctico: MyCloud-VM-Server**, realizado en entorno virtual como fase de prueba para una futura implementación en un servidor dedicado.
 
+## 👥 Alumnos
+
+- Sussini Guanziroli Patricio 
+- Vazquez Matias Ezequiel 
+
+## 📚 Materia 
+
+- Arquitectura y Sistemas Operativos
+
+## 🧷 Comisión 
+
+- N° 9
+
 ## 🧪 Descripción del caso
 
 La solución simula una plataforma básica de almacenamiento en la nube accesible desde una red local. El sistema permite:
